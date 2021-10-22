@@ -1,15 +1,26 @@
-# Copyright (c) 2021 Nordic Semiconductor ASA
+# Copyright (c) 2021 Golioth, Inc.
 # SPDX-License-Identifier: Apache-2.0
-#
-# This file is the application Kconfig entry point. All application Kconfig
-# options can be defined here or included via other application Kconfig files.
-# You can browse these options using the west targets menuconfig (terminal) or
-# guiconfig (GUI).
 
-menu "Zephyr"
+mainmenu "Golioth application options"
+
+if WIFI_ESP32
+
+config ESP32_WIFI_SSID
+	default GOLIOTH_SAMPLE_WIFI_SSID
+
+config ESP32_WIFI_PASSWORD
+	default GOLIOTH_SAMPLE_WIFI_PSK
+
+endif # WIFI_ESP32
+
+if DNS_RESOLVER
+
+config DNS_SERVER_IP_ADDRESSES
+	default y
+
+config DNS_SERVER1
+	default "1.1.1.1"
+
+endif # DNS_RESOLVER
+
 source "Kconfig.zephyr"
-endmenu
-
-module = APP
-module-str = APP
-source "subsys/logging/Kconfig.template.log_config"
