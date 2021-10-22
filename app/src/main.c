@@ -1,47 +1,56 @@
 /*
- * Copyright (c) 2021 Nordic Semiconductor ASA
+ * Copyright (c) 2021 Golioth, Inc.
+ *
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include <zephyr.h>
-#include <drivers/sensor.h>
-
-#include "app_version.h"
-
 #include <logging/log.h>
-LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
+LOG_MODULE_REGISTER(golioth_hello, LOG_LEVEL_DBG);
 
-void main(void)
+#include <net/coap.h>
+#include <net/golioth/system_client.h>
+#include <net/golioth/wifi.h>
+
+static struct golioth_client *client = GOLIOTH_SYSTEM_CLIENT_GET();
+
+static void golioth_on_message(struct golioth_client *client,
+			       struct coap_packet *rx)
 {
-	int ret;
-	const struct device *sensor;
+	uint16_t payload_len;
+	const uint8_t *payload;
+	uint8_t type;
 
-	printk("Zephyr Example Application %s\n", APP_VERSION_STR);
+	type = coap_header_get_type(rx);
+	payload = coap_packet_get_payload(rx, &payload_len);
 
-	sensor = DEVICE_DT_GET(DT_NODELABEL(examplesensor0));
-	if (!device_is_ready(sensor)) {
-		LOG_ERR("Sensor not ready");
-		return;
-	}
-
-	while (1) {
-		struct sensor_value val;
-
-		ret = sensor_sample_fetch(sensor);
-		if (ret < 0) {
-			LOG_ERR("Could not fetch sample (%d)", ret);
-			return;
-		}
-
-		ret = sensor_channel_get(sensor, SENSOR_CHAN_PROX, &val);
-		if (ret < 0) {
-			LOG_ERR("Could not get sample (%d)", ret);
-			return;
-		}
-
-		printk("Sensor value: %d\n", val.val1);
-
-		k_sleep(K_MSEC(1000));
+	if (!IS_ENABLED(CONFIG_LOG_BACKEND_GOLIOTH) && payload) {
+		LOG_HEXDUMP_DBG(payload, payload_len, "Payload");
 	}
 }
 
+void main(void)
+{
+	int counter = 0;
+	int err;
+
+	LOG_DBG("Start Hello sample");
+
+	if (IS_ENABLED(CONFIG_GOLIOTH_SAMPLE_WIFI)) {
+		LOG_INF("Connecting to WiFi");
+		wifi_connect();
+	}
+
+	client->on_message = golioth_on_message;
+	golioth_system_client_start();
+
+	while (true) {
+		LOG_INF("Sending hello! %d", counter++);
+
+		err = golioth_send_hello(client);
+		if (err) {
+			LOG_WRN("Failed to send hello!");
+		}
+
+		k_sleep(K_SECONDS(5));
+	}
+}
