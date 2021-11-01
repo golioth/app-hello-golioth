@@ -9,6 +9,7 @@ tasks:
       cd ..
       west init -l $GITPOD_REPO_ROOT
       west update
+      export -n ZEPHYR_BASE
       
 github:
   prebuilds:
