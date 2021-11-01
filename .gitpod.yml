@@ -9,7 +9,7 @@ tasks:
       cd ..
       west init -l $GITPOD_REPO_ROOT
       west update
-      west completion >> ~/.bashrc
+      west completion bash >> ~/.bashrc
       exec bash
       
 github:
