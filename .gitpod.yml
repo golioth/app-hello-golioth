@@ -5,11 +5,10 @@ image:
 tasks:
   - name: West Init
     init: | 
-      export -n ZEPHYR_BASE
       cd ..
+      export -n ZEPHYR_BASE
       west init -l $GITPOD_REPO_ROOT
       west update
-      export -n ZEPHYR_BASE
       
 github:
   prebuilds:
