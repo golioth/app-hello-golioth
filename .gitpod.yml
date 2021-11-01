@@ -13,7 +13,7 @@ tasks:
 
 vscode:
   extensions:
-   - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.7.1/vspackage
+   - https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-linux.vsix
    
 github:
   prebuilds:
