@@ -21,17 +21,12 @@ manifest:
       path: modules/lib/golioth
       revision: main
       url: https://github.com/golioth/zephyr-sdk.git
-     # import: true
+      import: true
 
   # Golioth dependencies.
     - name: qcbor
       revision: 17b5607b8c49b835d22dec3effa97b25c89267b3
       url: https://github.com/golioth/QCBOR.git
       path: modules/lib/qcbor
-
-    - name: nrf
-      revision: v1.7.0-rc2
-      url: https://github.com/nrfconnect/sdk-nrf
-      import: true
 
 
