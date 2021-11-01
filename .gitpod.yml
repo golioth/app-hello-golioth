@@ -8,7 +8,7 @@ tasks:
       cd ..
       export -n ZEPHYR_BASE
       west init -l $GITPOD_REPO_ROOT
-      west update
+      west update --stats
       export -n ZEPHYR_BASE
       
 github:
