@@ -10,7 +10,11 @@ tasks:
       west init -l $GITPOD_REPO_ROOT
       west update --stats
       export -n ZEPHYR_BASE
-      
+
+vscode:
+  extensions:
+   - "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.7.1/vspackage"
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
