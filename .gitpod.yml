@@ -5,9 +5,9 @@ image:
 tasks:
   - name: West Init
     init: | 
-      west config --global zephyr.base-prefer configfile
       cd ..
       west init -l $GITPOD_REPO_ROOT
+      west config --global zephyr.base-prefer configfile
       west update --narrow
 
 vscode:
