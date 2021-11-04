@@ -5,28 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Microcontroller",
-            "type": "gdb",
-            "request": "attach",
-            "executable": "${workspaceRoot}/build/zephyr/zephyr.elf",
-            "target": "${workspaceRoot}/build/zephyr/zephyr.elf",
+            "name": "Debug QEMU",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/zephyr/zephyr.elf",
+            "miDebuggerServerAddress": "localhost:1234",
+            "args": [],
+            "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
-            "gdbpath": "x86_64-zephyr-elf-gdb",
-            "autorun": [
-                "target extended-remote :1234"
-            ]
-        },
-        {
-            "name": "Debug",
-            "type": "gdb",
-            "request": "attach",
-            "cwd": "${workspaceRoot}",
-            "valuesFormatting": "parseText",
-            "executable": "${workspaceRoot}/build/zephyr/zephyr.elf",
-            "target": "extended-remote :1234",
-            "remote": true,
-            "gdbpath": "x86_64-zephyr-elf-gdb"
-            
+            "environment": [],
+            "externalConsole": true,
+            "launchCompleteCommand": "exec-run",
+            "linux": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "x86_64-zephyr-elf-gdb"
+            }
         }
     ]
 }
