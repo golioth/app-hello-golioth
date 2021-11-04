@@ -7,9 +7,8 @@ tasks:
     init: | 
       cd ..
       west init -l $GITPOD_REPO_ROOT
-    command: |
-      west config --global zephyr.base-prefer configfile
       west update --narrow
+      cd app-hello-golioth
 
 
 vscode:
