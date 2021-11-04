@@ -17,6 +17,8 @@ vscode:
    - jerrygoyal.shortcut-menu-bar
    - webfreak.debug
 
+   - cnshenj.vscode-task-manager
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
