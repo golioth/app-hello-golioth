@@ -6,12 +6,26 @@
         {
             "label": "Build for qemu_x86",
             "type": "shell",
-            "command": "west build -b qemu_x86"
+            "command": "west build -b qemu_x86",
+            "group": "build"
         },
         {
             "label": "Start QEMU",
             "type": "shell",
-            "command": "ninja -C build debugserver"
+            "command": "ninja -C build debugserver",
+            "group": "build"
+        },
+        {
+            "label": "Build for Nucleo H745 (M7 Core)",
+            "type": "shell",
+            "command": "west build -p auto -b  nucleo_h745zi_q_m7",
+            "group": "build"
+        },
+        {
+            "label": "Build for Nucleo H745 (M4 Core)",
+            "type": "shell",
+            "command": "west build -p auto -b  nucleo_h745zi_q_m4",
+            "group": "build"
         }
     ],
     
