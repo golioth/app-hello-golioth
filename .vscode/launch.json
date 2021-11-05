@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug QEMU",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/zephyr/zephyr.elf",
+            "miDebuggerServerAddress": "localhost:1234",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": true,
+            "launchCompleteCommand": "exec-run",
+            "linux": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "x86_64-zephyr-elf-gdb"
+            }
+        }
+    ]
+}

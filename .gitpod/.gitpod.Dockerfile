@@ -17,4 +17,6 @@ USER gitpod
 # Zephyr SDK
 ENV ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains/zephyr-sdk-0.13.1
 ENV PATH="/opt/toolchains/gcc-arm-none-eabi-10-2020-q4-major/bin:${PATH}"
+ENV PATH="/opt/toolchains/zephyr-sdk-0.13.1/x86_64-zephyr-elf/bin/:${PATH}"
+RUN west config --global zephyr.base-prefer configfile
 USER root
