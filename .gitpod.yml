@@ -14,10 +14,8 @@ tasks:
 vscode:
   extensions:
    - https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-linux.vsix
-   - jerrygoyal.shortcut-menu-bar
    - webfreak.debug
    - https://github.com/spmeesseman/vscode-taskexplorer/releases/download/v2.5.7/vscode-taskexplorer-2.5.7.vsix
-   - cnshenj.vscode-task-manager
 
 github:
   prebuilds:
