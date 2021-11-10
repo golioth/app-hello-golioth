@@ -2,31 +2,37 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [
+    "tasks":
+    [
         {
-            "label": "Build for qemu_x86",
+            "label": "Build for",
             "type": "shell",
-            "command": "west build -b qemu_x86",
+            "command": "west build -b ${input:boardId}",
             "group": "build"
         },
         {
             "label": "Start QEMU",
             "type": "shell",
             "command": "ninja -C build debugserver",
-            "group": "build"
-        },
-        {
-            "label": "Build for Nucleo H745 (M7 Core)",
-            "type": "shell",
-            "command": "west build -p auto -b  nucleo_h745zi_q_m7",
-            "group": "build"
-        },
-        {
-            "label": "Build for Nucleo H745 (M4 Core)",
-            "type": "shell",
-            "command": "west build -p auto -b  nucleo_h745zi_q_m4",
-            "group": "build"
+            "group": "test"
         }
     ],
-    
+    "inputs": 
+    [
+        {
+            "id": "boardId",
+            "type": "pickString",
+            "description": "Build for which board?",
+            "options": 
+            [
+                "b_l4s5i_iot01a",
+                "qemu_x86",
+                "nucleo_h745zi_q_m4",
+                "nucleo_h745zi_q_m7"
+              ],
+              "default": "qemu_x86"
+
+
+        }
+    ]
 }
