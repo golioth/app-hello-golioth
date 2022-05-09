@@ -20,5 +20,5 @@ manifest:
     - name: golioth
       path: modules/lib/golioth
       revision: main
-      url: https://github.com/golioth/zephyr-sdk.git
+      url: https://github.com/golioth/golioth-zephyr-sdk.git
       import: true
